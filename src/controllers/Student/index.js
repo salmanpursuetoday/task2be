@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     const { fullName, fatherName, rollNumber, registrationNo } = req.body;
 
     const match = await Student.findOne({ rollNumber: rollNumber });
-    if (match) return res.status(400).json({ message: "Student already exits" });
+    if (match) return res.status(200).json({ message: "Student already exits" });
     else {
       const student = {
         fullName: fullName,
@@ -19,7 +19,7 @@ exports.create = async (req, res) => {
     }
 
   } catch (error) {
-    res.status(400).json({ message: error.message, error: true });
+    res.status(200).json({ message: error.message, error: true });
   }
 }
 
@@ -28,6 +28,6 @@ exports.getStudnets = async (req, res) =>{
     const students  = await Student.find();
     return res.status(200).json({ message: "Data retrieved", data: students, error: false });
   } catch (error) {
-    res.status(400).json({ message: error.message, error: true });
+    res.status(200).json({ message: error.message, error: true });
   }
 }

@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
     const { studentId, partNo, urdu, english, islamicEducation, pakistanStudies, physics, computer, math } = req.body;
 
     const match = await Result.findOne({ studentId: studentId, partNo: partNo });
-    if (match) return res.status(400).json({ message: "Result already added" });
+    if (match) return res.status(200).json({ message: "Result already added" });
     else {
       const student = {
         studentId: studentId,
@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
     }
 
   } catch (error) {
-    res.status(400).json({ message: error.message, error: true });
+    res.status(200).json({ message: error.message, error: true });
   }
 }
 
